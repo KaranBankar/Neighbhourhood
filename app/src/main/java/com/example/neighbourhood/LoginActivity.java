@@ -5,14 +5,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etMobile, etPassword;
-    private Button btn_login;
+    private CardView btn_login;
+
+    TextView donthaveaccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +28,23 @@ public class LoginActivity extends AppCompatActivity {
         etMobile = findViewById(R.id.etMobile);
         etPassword = findViewById(R.id.etPassword);
         btn_login=findViewById(R.id.btnLogin);
+        donthaveaccount=findViewById(R.id.donthaveacc);
+
+        donthaveaccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(LoginActivity.this,AdminUserActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validateInputs();
                 if(validateInputs()==true){
-                    Intent i=new Intent(LoginActivity.this,AdminUserActivity.class);
+                    Intent i=new Intent(LoginActivity.this,UserHomeActivity.class);
                     startActivity(i);
                     finish();
                 }

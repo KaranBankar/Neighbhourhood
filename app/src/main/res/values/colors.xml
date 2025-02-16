@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#0A70DF</color>
+    <color name="fent_blue">#3E0A70DF</color>
 </resources>
