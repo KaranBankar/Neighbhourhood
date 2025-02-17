@@ -30,7 +30,65 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-        <com.google.android.material.card.MaterialCardView
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Write Notice"
+                    android:fontFamily="sans-serif-black"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="normal"
+                    android:textSize="@dimen/_20sdp"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:padding="@dimen/_16sdp"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/blue"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_120sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:src="@drawable/noticeboard"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_20sdp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="There will be no Water Supply Avaialne for next two Days. Use Water Carefully."
+                            android:textColor="@color/black"
+                            android:layout_marginRight="5dp"
+                            android:textSize="20dp"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Explore More"
+                    android:fontFamily="sans-serif-black"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="normal"
+                    android:textSize="@dimen/_20sdp"/>
+
+                <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="190dp"
             android:padding="@dimen/_16sdp"
