@@ -73,4 +73,13 @@ public class LoginActivity extends AppCompatActivity {
         String passwordPattern = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#\\$%^&+=]).{8,}$";
         return password.matches(passwordPattern);
     }
+
+//    private void adminLogin(){
+//        String mobile = etMobile.getText().toString();
+//        String password = etPassword.getText().toString();
+//        if(mobile=="9307879687" && password=="Pass@123"){
+//            Intent i=new Intent(LoginActivity.this,UserHomeActivity.class);
+//
+//        }
+//    }
 }

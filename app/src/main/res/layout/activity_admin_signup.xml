@@ -244,6 +244,8 @@
                         android:background="#00000000"/>
 
                 </LinearLayout>
+
+
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
@@ -287,6 +289,8 @@
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+
 
 
             <com.google.android.material.card.MaterialCardView
