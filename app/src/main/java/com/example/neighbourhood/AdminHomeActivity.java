@@ -1,7 +1,10 @@
 package com.example.neighbourhood;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -20,6 +23,7 @@ public class AdminHomeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private Toolbar toolbar;
+    private ImageView add_member;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,15 @@ public class AdminHomeActivity extends AppCompatActivity {
 
         setupToolbar();
         setupNavigationDrawer();
+
+        add_member=findViewById(R.id.add_member);
+        add_member.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(AdminHomeActivity.this,MemberSignupActivity.class);
+                startActivity(i);
+            }
+        });
     }
     private void setupToolbar() {
         setSupportActionBar(toolbar);

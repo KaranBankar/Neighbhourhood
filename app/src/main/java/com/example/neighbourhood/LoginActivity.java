@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,8 +35,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(LoginActivity.this,AdminUserActivity.class);
-                startActivity(i);
-                finish();
+                //startActivity(i);
+                //finish();
             }
         });
 
@@ -44,10 +45,16 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 validateInputs();
                 if(validateInputs()==true){
-                    Intent i=new Intent(LoginActivity.this,UserHomeActivity.class);
+
+                }
+                String mobile = etMobile.getText().toString();
+                String password = etPassword.getText().toString();
+                if(mobile.equals("9307879687") && password.equals("Pass@123")){
+                    Intent i=new Intent(LoginActivity.this,AdminHomeActivity.class);
                     startActivity(i);
                     finish();
                 }
+                //Toast.makeText(this,"Hello",Toast.LENGTH_LONG).
             }
         });
     }
@@ -74,12 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         return password.matches(passwordPattern);
     }
 
-//    private void adminLogin(){
-//        String mobile = etMobile.getText().toString();
-//        String password = etPassword.getText().toString();
-//        if(mobile=="9307879687" && password=="Pass@123"){
-//            Intent i=new Intent(LoginActivity.this,UserHomeActivity.class);
-//
-//        }
-//    }
+    private void adminLogin(){
+
+    }
 }

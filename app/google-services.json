@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "767458069242",
+    "project_id": "neighbourhood-4f441",
+    "storage_bucket": "neighbourhood-4f441.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767458069242:android:2a5802429516a1cca9d743",
+        "android_client_info": {
+          "package_name": "com.example.neighbourhood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh6J1mJclIQUSky0TthAJZ525y8rEiQ6Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

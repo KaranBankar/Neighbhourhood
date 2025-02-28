@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign Up Member"
+                android:text="Add Member"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_60sdp"
@@ -247,30 +247,40 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_40sdp"-->
+<!--                android:id="@+id/btnSubmit"-->
+<!--                android:layout_marginLeft="@dimen/_40sdp"-->
+<!--                android:layout_marginRight="@dimen/_40sdp"-->
+<!--                android:layout_marginTop="@dimen/_25sdp"-->
+<!--                app:cardCornerRadius="@dimen/_8sdp"-->
+<!--                app:strokeColor="@color/blue"-->
+<!--                android:backgroundTint="@color/blue"-->
+<!--                app:cardElevation="@dimen/_5sdp">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/btn_signup"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Sign Up"-->
+<!--                    android:fontFamily="sans-serif-black"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:textStyle="normal"-->
+<!--                    android:textSize="@dimen/_17sdp"/>-->
+
+<!--            </com.google.android.material.card.MaterialCardView>-->
+
+            <Button
+                android:id="@+id/btnSubmit"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                android:id="@+id/signupbtn"
-                android:layout_marginLeft="@dimen/_40sdp"
-                android:layout_marginRight="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_25sdp"
-                app:cardCornerRadius="@dimen/_8sdp"
-                app:strokeColor="@color/blue"
-                android:backgroundTint="@color/blue"
-                app:cardElevation="@dimen/_5sdp">
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:backgroundTint="@color/black"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="20dp"/>
 
-                <TextView
-                    android:id="@+id/btn_signup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sign Up"
-                    android:fontFamily="sans-serif-black"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center"
-                    android:textStyle="normal"
-                    android:textSize="@dimen/_17sdp"/>
-
-            </com.google.android.material.card.MaterialCardView>
             <TextView
 
                 android:id="@+id/tvLoginPage"

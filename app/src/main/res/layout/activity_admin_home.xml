@@ -31,16 +31,33 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Write Notice"
-                    android:fontFamily="sans-serif-black"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginLeft="10dp"
-                    android:textStyle="normal"
-                    android:textSize="@dimen/_20sdp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Write Notice"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:textStyle="normal"
+                        android:textSize="@dimen/_20sdp"/>
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/add_member"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="150dp"
+                        android:tint="@color/blue"
+                        android:id="@+id/add_member"/>
+
+                </LinearLayout>
+
+
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -59,19 +76,22 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="@dimen/_120sdp"
-                            android:layout_height="@dimen/_100sdp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/noticeboard"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/_20sdp"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="There will be no Water Supply Avaialne for next two Days. Use Water Carefully."
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:hint="Enter Notice to Publish"
+                            android:id="@+id/et_notice"
                             android:textColor="@color/black"
                             android:layout_marginRight="5dp"
-                            android:textSize="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18dp"
                             android:layout_gravity="center"
                             android:textStyle="bold"/>
                     </LinearLayout>
