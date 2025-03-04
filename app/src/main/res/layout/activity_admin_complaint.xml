@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AdminComplaintActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Complaints"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/adminRecyclerView"

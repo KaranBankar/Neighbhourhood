@@ -30,7 +30,9 @@ public class AdminHomeActivity extends AppCompatActivity {
     private ImageView add_member;
     private EditText etNotice;
     private DatabaseReference noticeRef;
-    private MaterialCardView manage_complains;
+    private MaterialCardView manage_complains,add_maintance,admin_helpdesk;
+
+    private MaterialCardView admin_event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,10 @@ public class AdminHomeActivity extends AppCompatActivity {
         navView = findViewById(R.id.nav_view);
         etNotice = findViewById(R.id.et_notice);
         manage_complains=findViewById(R.id.manage_complains);
+        add_maintance=findViewById(R.id.add_Maintanace);
+        admin_event=findViewById(R.id.admin_evets);
+        admin_helpdesk=findViewById(R.id.admin_helpdesk);
+
 
         // Firebase reference
         noticeRef = FirebaseDatabase.getInstance().getReference("Notice");
@@ -56,8 +62,11 @@ public class AdminHomeActivity extends AppCompatActivity {
             startActivity(i);
         });
 
-        manage_complains.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this, UserComplainActivity.class)));
+        add_maintance.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this, AdminMaintananceActivity.class)));
+        manage_complains.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this, AdminComplaintActivity.class)));
+        admin_event.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this, AdminEventsActivity.class)));
 
+        admin_helpdesk.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this, UserHelpdeskActivity.class)));
         // Auto-save notice whenever the admin types
         etNotice.addTextChangedListener(new TextWatcher() {
             @Override
