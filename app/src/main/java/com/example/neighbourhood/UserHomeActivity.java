@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,14 +16,20 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class UserHomeActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private Toolbar toolbar;
-
-    private MaterialCardView mainteinance,events,helpdesk,complain;
+    private MaterialCardView mainteinance, events, helpdesk, complain;
+    private TextView tvNotice;
+    private DatabaseReference noticeRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,49 +37,50 @@ public class UserHomeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_user_home); // Ensure this matches your XML file name
 
-        mainteinance=findViewById(R.id.maintainance);
-        events=findViewById(R.id.events);
-        helpdesk=findViewById(R.id.helpdesk);
-        complain=findViewById(R.id.complain);
-
-        mainteinance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent  i=new Intent(UserHomeActivity.this,UserMaintenanceActivity.class);
-                startActivity(i);
-            }
-        });
-
-        events.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent  i=new Intent(UserHomeActivity.this, UserEventsActivity.class);
-                startActivity(i);
-            }
-        });
-
-        helpdesk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent  i=new Intent(UserHomeActivity.this,UserHelpdeskActivity.class);
-                startActivity(i);
-            }
-        });
-
-        complain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent  i=new Intent(UserHomeActivity.this,UserComplainActivity.class);
-                startActivity(i);
-            }
-        });
         // Initialize views
+        mainteinance = findViewById(R.id.maintainance);
+        events = findViewById(R.id.events);
+        helpdesk = findViewById(R.id.helpdesk);
+        complain = findViewById(R.id.complain);
+        tvNotice = findViewById(R.id.tv_notice); // Make sure your TextView ID matches in XML
+
+        // Firebase reference
+        noticeRef = FirebaseDatabase.getInstance().getReference("Notice");
+
+        // Fetch notice from Firebase
+        fetchNoticeFromFirebase();
+
+        // Set click listeners
+        mainteinance.setOnClickListener(v -> startActivity(new Intent(UserHomeActivity.this, UserMaintenanceActivity.class)));
+        events.setOnClickListener(v -> startActivity(new Intent(UserHomeActivity.this, UserEventsActivity.class)));
+        helpdesk.setOnClickListener(v -> startActivity(new Intent(UserHomeActivity.this, UserHelpdeskActivity.class)));
+        complain.setOnClickListener(v -> startActivity(new Intent(UserHomeActivity.this, UserComplainActivity.class)));
+
         drawerLayout = findViewById(R.id.main);
         toolbar = findViewById(R.id.toolbar);
         navView = findViewById(R.id.nav_view);
 
         setupToolbar();
         setupNavigationDrawer();
+    }
+
+    private void fetchNoticeFromFirebase() {
+        noticeRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String noticeText = dataSnapshot.getValue(String.class);
+                    tvNotice.setText(noticeText);
+                } else {
+                    tvNotice.setText("No Notice Available");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(UserHomeActivity.this, "Failed to load notice!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setupToolbar() {
@@ -89,15 +98,9 @@ public class UserHomeActivity extends AppCompatActivity {
     }
 
     private void setupNavigationDrawer() {
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                // Handle menu item clicks here (e.g., open new activities)
-
-                // Close drawer after selection
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
-            }
+        navView.setNavigationItemSelectedListener(menuItem -> {
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
         });
     }
 

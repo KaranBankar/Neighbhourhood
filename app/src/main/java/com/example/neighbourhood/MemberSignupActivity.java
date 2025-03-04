@@ -1,4 +1,5 @@
 package com.example.neighbourhood;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -65,5 +66,14 @@ public class MemberSignupActivity extends AppCompatActivity {
                 .addOnSuccessListener(aVoid -> Toast.makeText(MemberSignupActivity.this, "Member added successfully", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(MemberSignupActivity.this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        Intent i=new Intent(MemberSignupActivity.this,AdminSignupActivity.class);
+//        startActivity(i);
+//        finish();
+//
+//    }
 }
 

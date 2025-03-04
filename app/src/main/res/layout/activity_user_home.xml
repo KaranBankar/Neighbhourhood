@@ -68,9 +68,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
+                    android:id="@+id/tv_notice"
                     android:text="There will be no Water Supply Avaialne for next two Days. Use Water Carefully."
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="18dp"
                     android:layout_gravity="center"
                     android:textStyle="bold"/>
             </LinearLayout>

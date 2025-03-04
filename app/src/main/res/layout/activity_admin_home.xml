@@ -94,6 +94,7 @@
                             android:textSize="18dp"
                             android:layout_gravity="center"
                             android:textStyle="bold"/>
+
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -184,6 +185,7 @@
             android:layout_width="match_parent"
             android:layout_height="190dp"
             android:padding="@dimen/_16sdp"
+            android:id="@+id/manage_complains"
             android:layout_margin="20dp"
             app:cardCornerRadius="20dp"
             app:cardBackgroundColor="@color/white"

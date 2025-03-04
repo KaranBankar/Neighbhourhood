@@ -2,21 +2,25 @@ package com.example.neighbourhood;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
 import androidx.core.view.GravityCompat;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminHomeActivity extends AppCompatActivity {
 
@@ -24,6 +28,10 @@ public class AdminHomeActivity extends AppCompatActivity {
     private NavigationView navView;
     private Toolbar toolbar;
     private ImageView add_member;
+    private EditText etNotice;
+    private DatabaseReference noticeRef;
+    private MaterialCardView manage_complains;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,19 +41,55 @@ public class AdminHomeActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.main);
         toolbar = findViewById(R.id.toolbar);
         navView = findViewById(R.id.nav_view);
+        etNotice = findViewById(R.id.et_notice);
+        manage_complains=findViewById(R.id.manage_complains);
+
+        // Firebase reference
+        noticeRef = FirebaseDatabase.getInstance().getReference("Notice");
 
         setupToolbar();
         setupNavigationDrawer();
 
-        add_member=findViewById(R.id.add_member);
-        add_member.setOnClickListener(new View.OnClickListener() {
+        add_member = findViewById(R.id.add_member);
+        add_member.setOnClickListener(v -> {
+            Intent i = new Intent(AdminHomeActivity.this, MemberSignupActivity.class);
+            startActivity(i);
+        });
+
+        manage_complains.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this, UserComplainActivity.class)));
+
+        // Auto-save notice whenever the admin types
+        etNotice.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                Intent i=new Intent(AdminHomeActivity.this,MemberSignupActivity.class);
-                startActivity(i);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Not needed
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                saveNoticeToFirebase(s.toString().trim());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Not needed
             }
         });
+
     }
+
+    private void saveNoticeToFirebase(String noticeText) {
+        if (!noticeText.isEmpty()) {
+            noticeRef.setValue(noticeText).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    //Toast.makeText(AdminHomeActivity.this, "Notice updated!", Toast.LENGTH_SHORT).show();
+                } else {
+                    //Toast.makeText(AdminHomeActivity.this, "Failed to update notice!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
     private void setupToolbar() {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -61,15 +105,9 @@ public class AdminHomeActivity extends AppCompatActivity {
     }
 
     private void setupNavigationDrawer() {
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                // Handle menu item clicks here (e.g., open new activities)
-
-                // Close drawer after selection
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
-            }
+        navView.setNavigationItemSelectedListener(menuItem -> {
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
         });
     }
 
@@ -81,5 +119,4 @@ public class AdminHomeActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/et_complaint_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your Name" />
+
+    <EditText
+        android:id="@+id/et_complaint_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Mobile Number"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/et_complaint_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Select Date"
+        android:focusable="false"
+        android:clickable="true" />
+
+    <EditText
+        android:id="@+id/et_complaint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your Complaint"
+        android:minHeight="100dp"
+        android:gravity="top" />
+
+    <Button
+        android:id="@+id/btn_submit_complaint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit Complaint"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>
