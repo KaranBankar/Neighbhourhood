@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            if (mobile.equals("9307879687") && password.equals("Pass@123")) {
+            if (mobile.equals("9175987798") && password.equals("Pass@123")) {
                 saveLoginState("admin", mobile);
                 startActivity(new Intent(LoginActivity.this, AdminHomeActivity.class));
                 finish();
