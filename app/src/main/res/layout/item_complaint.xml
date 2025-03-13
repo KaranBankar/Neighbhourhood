@@ -26,4 +26,21 @@
         android:textSize="14sp"
         android:padding="4dp" />
 
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Not Approved"
+        android:textColor="#EF3535"
+        android:textSize="14sp"
+        android:padding="4dp" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="Take Action"
+        android:id="@+id/take_action"/>
+
 </LinearLayout>

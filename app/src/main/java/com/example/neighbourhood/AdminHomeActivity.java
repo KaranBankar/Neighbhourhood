@@ -1,11 +1,11 @@
 package com.example.neighbourhood;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -24,15 +24,16 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminHomeActivity extends AppCompatActivity {
 
+    private static final String PREF_NAME = "LoginPrefs";
+    private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
+
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private Toolbar toolbar;
     private ImageView add_member;
     private EditText etNotice;
     private DatabaseReference noticeRef;
-    private MaterialCardView manage_complains,add_maintance,admin_helpdesk;
-
-    private MaterialCardView admin_event;
+    private MaterialCardView manage_complains, add_maintenance, admin_helpdesk, admin_event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +45,10 @@ public class AdminHomeActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         navView = findViewById(R.id.nav_view);
         etNotice = findViewById(R.id.et_notice);
-        manage_complains=findViewById(R.id.manage_complains);
-        add_maintance=findViewById(R.id.add_Maintanace);
-        admin_event=findViewById(R.id.admin_evets);
-        admin_helpdesk=findViewById(R.id.admin_helpdesk);
-
+        manage_complains = findViewById(R.id.manage_complains);
+        add_maintenance = findViewById(R.id.add_Maintanace);
+        admin_event = findViewById(R.id.admin_evets);
+        admin_helpdesk = findViewById(R.id.admin_helpdesk);
 
         // Firebase reference
         noticeRef = FirebaseDatabase.getInstance().getReference("Notice");
@@ -57,22 +57,17 @@ public class AdminHomeActivity extends AppCompatActivity {
         setupNavigationDrawer();
 
         add_member = findViewById(R.id.add_member);
-        add_member.setOnClickListener(v -> {
-            Intent i = new Intent(AdminHomeActivity.this, MemberSignupActivity.class);
-            startActivity(i);
-        });
+        add_member.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this, MemberSignupActivity.class)));
 
-        add_maintance.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this, AdminMaintananceActivity.class)));
+        add_maintenance.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this, AdminMaintananceActivity.class)));
         manage_complains.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this, AdminComplaintActivity.class)));
         admin_event.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this, AdminEventsActivity.class)));
-
         admin_helpdesk.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this, UserHelpdeskActivity.class)));
+
         // Auto-save notice whenever the admin types
         etNotice.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // Not needed
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -80,20 +75,17 @@ public class AdminHomeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-                // Not needed
-            }
+            public void afterTextChanged(Editable s) {}
         });
-
     }
 
     private void saveNoticeToFirebase(String noticeText) {
         if (!noticeText.isEmpty()) {
             noticeRef.setValue(noticeText).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    //Toast.makeText(AdminHomeActivity.this, "Notice updated!", Toast.LENGTH_SHORT).show();
+                    // Notice updated successfully
                 } else {
-                    //Toast.makeText(AdminHomeActivity.this, "Failed to update notice!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminHomeActivity.this, "Failed to update notice!", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -115,9 +107,31 @@ public class AdminHomeActivity extends AppCompatActivity {
 
     private void setupNavigationDrawer() {
         navView.setNavigationItemSelectedListener(menuItem -> {
+            int id = menuItem.getItemId();
+
+            if (id == R.id.nav_logout) {
+                logoutAdmin();
+            }
+
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
+    }
+
+    private void logoutAdmin() {
+        // Clear login state
+        SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+
+        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+
+        // Redirect to LoginActivity
+        Intent intent = new Intent(AdminHomeActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
+        startActivity(intent);
+        finish();
     }
 
     @Override

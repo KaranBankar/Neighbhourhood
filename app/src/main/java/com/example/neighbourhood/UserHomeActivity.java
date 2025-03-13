@@ -1,9 +1,9 @@
 package com.example.neighbourhood;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +24,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class UserHomeActivity extends AppCompatActivity {
 
+    private static final String PREF_NAME = "LoginPrefs";
+    private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
+
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private Toolbar toolbar;
@@ -35,14 +38,14 @@ public class UserHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_user_home); // Ensure this matches your XML file name
+        setContentView(R.layout.activity_user_home);
 
         // Initialize views
         mainteinance = findViewById(R.id.maintainance);
         events = findViewById(R.id.events);
         helpdesk = findViewById(R.id.helpdesk);
         complain = findViewById(R.id.complain);
-        tvNotice = findViewById(R.id.tv_notice); // Make sure your TextView ID matches in XML
+        tvNotice = findViewById(R.id.tv_notice);
 
         // Firebase reference
         noticeRef = FirebaseDatabase.getInstance().getReference("Notice");
@@ -99,9 +102,31 @@ public class UserHomeActivity extends AppCompatActivity {
 
     private void setupNavigationDrawer() {
         navView.setNavigationItemSelectedListener(menuItem -> {
+            int id = menuItem.getItemId();
+
+            if (id == R.id.nav_logout) {
+                logoutUser();
+            }
+
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
+    }
+
+    private void logoutUser() {
+        // Clear login state
+        SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+
+        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+
+        // Redirect to LoginActivity
+        Intent intent = new Intent(UserHomeActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
+        startActivity(intent);
+        finish();
     }
 
     @Override

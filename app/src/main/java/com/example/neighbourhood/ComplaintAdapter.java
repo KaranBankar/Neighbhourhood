@@ -1,8 +1,10 @@
 package com.example.neighbourhood;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +30,15 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.View
         Complaint complaint = complaintList.get(position);
         holder.tvComplaint.setText(complaint.getComplaint());
         holder.tvDate.setText("Date: " + complaint.getDate());
+
+        holder.take_action.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.tvStatus.setText("Solved");
+                holder.tvStatus.setTextColor(Color.GREEN); // Using predefined green color
+            }
+        });
+
     }
 
     @Override
@@ -36,12 +47,15 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.View
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvComplaint, tvDate;
+        TextView tvComplaint, tvDate,tvStatus;
+        Button take_action;
 
         ViewHolder(View itemView) {
             super(itemView);
             tvComplaint = itemView.findViewById(R.id.tvComplaint);
             tvDate = itemView.findViewById(R.id.tvDate);
+            take_action=itemView.findViewById(R.id.take_action);
+            tvStatus=itemView.findViewById(R.id.tvStatus);
         }
     }
 }

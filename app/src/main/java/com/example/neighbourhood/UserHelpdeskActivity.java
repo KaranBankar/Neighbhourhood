@@ -45,7 +45,14 @@ public class UserHelpdeskActivity extends AppCompatActivity {
         contactList.add(new EmergencyContact("Ambulance", "108"));
         contactList.add(new EmergencyContact("Fire Brigade", "101"));
         contactList.add(new EmergencyContact("Women Helpline", "1091"));
-        contactList.add(new EmergencyContact("Disaster Helpline", "1078"));
+        contactList.add(new EmergencyContact("Secretary", "8530750717"));
+        contactList.add(new EmergencyContact("Chairman", "8530750717"));
+        contactList.add(new EmergencyContact("Vice President", "8530750717"));
+        contactList.add(new EmergencyContact("Treasurer", "8530750717"));
+        contactList.add(new EmergencyContact("Director", "8530750717"));
+        contactList.add(new EmergencyContact("Joint Secretary", "8530750717"));
+        contactList.add(new EmergencyContact("Member", "8530750717"));
+
 
         adapter = new EmergencyContactAdapter(this, contactList);
         recyclerView.setAdapter(adapter);
