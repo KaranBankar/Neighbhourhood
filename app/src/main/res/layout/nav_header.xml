@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello,Shranavi"
+        android:text="Hello"
         android:textSize="18sp"
         android:layout_marginTop="@dimen/_10sdp"
         android:textColor="@android:color/black" />
@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="user@gmail.com"
+        android:text="Neighbour is our first Family Member"
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray" />
 </LinearLayout>

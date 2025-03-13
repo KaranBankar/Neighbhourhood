@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         etMobile = findViewById(R.id.etMobile);
         etPassword = findViewById(R.id.etPassword);
         btn_login = findViewById(R.id.btnLogin);
-        donthaveaccount = findViewById(R.id.donthaveacc);
+        //donthaveaccount = findViewById(R.id.donthaveacc);
 
         // Initialize Firebase Database reference
         databaseReference = FirebaseDatabase.getInstance().getReference("Members");
@@ -55,11 +55,11 @@ public class LoginActivity extends AppCompatActivity {
             redirectToHome();
         }
 
-        donthaveaccount.setOnClickListener(v -> {
-            Intent i = new Intent(LoginActivity.this, AdminUserActivity.class);
-            startActivity(i);
-            finish();
-        });
+//        donthaveaccount.setOnClickListener(v -> {
+//            Intent i = new Intent(LoginActivity.this, AdminUserActivity.class);
+//            startActivity(i);
+//            finish();
+//        });
 
         btn_login.setOnClickListener(v -> {
             String mobile = etMobile.getText().toString().trim();

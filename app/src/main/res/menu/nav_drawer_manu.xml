@@ -3,12 +3,6 @@
     <item android:id="@+id/nav_home" android:title="Home"
         android:icon="@drawable/uuesr" />
 
-    <item android:id="@+id/nav_feedback" android:title="Feedback"
-        android:icon="@drawable/uuesr" />
-
-    <item android:id="@+id/nav_share" android:title="Share"
-        android:icon="@drawable/uuesr" />
-
     <item android:id="@+id/nav_logout" android:title="Logout"
         android:icon="@drawable/uuesr" />
 </menu>
