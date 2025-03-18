@@ -112,6 +112,15 @@ public class AdminHomeActivity extends AppCompatActivity {
             if (id == R.id.nav_logout) {
                 logoutAdmin();
             }
+            if(id==R.id.nav_aboutus){
+                Intent i=new Intent(AdminHomeActivity.this,AboutUSActivity.class);
+                startActivity(i);
+            }
+
+            if(id==R.id.nav_Budget){
+                Intent i=new Intent(AdminHomeActivity.this,BudgetActivity.class);
+                startActivity(i);
+            }
 
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;

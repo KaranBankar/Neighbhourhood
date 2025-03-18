@@ -57,7 +57,7 @@ public class UserHomeActivity extends AppCompatActivity {
         mainteinance.setOnClickListener(v -> startActivity(new Intent(UserHomeActivity.this, UserMaintenanceActivity.class)));
         events.setOnClickListener(v -> startActivity(new Intent(UserHomeActivity.this, UserEventsActivity.class)));
         helpdesk.setOnClickListener(v -> startActivity(new Intent(UserHomeActivity.this, UserHelpdeskActivity.class)));
-        complain.setOnClickListener(v -> startActivity(new Intent(UserHomeActivity.this, UserComplainActivity.class)));
+        complain.setOnClickListener(v -> startActivity(new Intent(UserHomeActivity.this, UserComplainNewActivity.class)));
 
         drawerLayout = findViewById(R.id.main);
         toolbar = findViewById(R.id.toolbar);
@@ -107,7 +107,13 @@ public class UserHomeActivity extends AppCompatActivity {
             if (id == R.id.nav_logout) {
                 logoutUser();
             }
-
+            if(id==R.id.nav_aboutus){
+                Intent i=new Intent(UserHomeActivity.this,AboutUSActivity.class);
+                startActivity(i);
+            }if(id==R.id.nav_Budget){
+                Intent i=new Intent(UserHomeActivity.this,BudgetActivity.class);
+                startActivity(i);
+            }
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });

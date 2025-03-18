@@ -7,4 +7,12 @@
     <item android:id="@+id/nav_logout" android:title="Logout"
         android:icon="@drawable/logout"
         android:iconTint="@color/blue"/>
+
+    <item android:id="@+id/nav_Budget"
+        android:title="Budget"
+        android:icon="@drawable/budget"/>
+
+    <item android:id="@+id/nav_aboutus"
+        android:title="About Us"
+        android:icon="@drawable/about"/>
 </menu>

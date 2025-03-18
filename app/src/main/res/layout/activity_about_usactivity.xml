@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white"
+    tools:context=".AboutUSActivity">
+
+    <!-- ImageView for About Us Image -->
+    <ImageView
+        android:id="@+id/about_image"
+        android:layout_marginTop="50dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/applogo"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="About Us Image" />
+
+    <!-- TextView for About Us Paragraph -->
+    <TextView
+        android:id="@+id/about_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Neighbourhood Cooperative Housing Society is a community-focused residential society committed to providing a safe, inclusive, and well-maintained living environment for our members. Built on the principles of cooperation and shared responsibility, we strive to create a harmonious neighborhood where residents can enjoy a high quality of life. "
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp" />
+
+    <!-- About Developers Section -->
+    <TextView
+        android:id="@+id/about_developers_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About Developers"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:paddingBottom="10dp" />
+
+    <!-- Developer Names -->
+    <TextView
+        android:id="@+id/developer_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rutuja Suryawanshi"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:padding="5dp" />
+
+    <TextView
+        android:id="@+id/developer_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Priyanka Taksal"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:padding="5dp" />
+
+    <TextView
+        android:id="@+id/developer_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Devika Tatude"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:padding="5dp" />
+
+</LinearLayout>
